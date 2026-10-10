@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_VERSION:=2.10
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_HASH:=88215a62291b9ba87da8e50b077741103cdc08fb6c9e1ebd34dfaace746d3201
 
 PKG_MAINTAINER:=Christian Marangi <ansuelsmth@gmail.com>
@@ -37,7 +37,8 @@ define Trusted-Firmware-A/an7583-bl2
   $(call Trusted-Firmware-A/bl2/Default)
   BUILD_SUBTARGET:=an7583
   SOC:=AN7583
-  BUILD_DEVICES:=airoha_an7583-evb airoha_an7583-evb-emmc
+  BUILD_DEVICES:=airoha_an7583-evb airoha_an7583-evb-emmc \
+	nokia_xg-040g-mf-ubi
 endef
 
 define Trusted-Firmware-A/bl31/Default
@@ -57,7 +58,8 @@ define Trusted-Firmware-A/an7583-bl31
   $(call Trusted-Firmware-A/bl31/Default)
   BUILD_SUBTARGET:=an7583
   SOC:=AN7583
-  BUILD_DEVICES:=airoha_an7583-evb airoha_an7583-evb-emmc
+  BUILD_DEVICES:=airoha_an7583-evb airoha_an7583-evb-emmc \
+	nokia_xg-040g-mf-ubi
 endef
 
 TFA_TARGETS:= \
@@ -90,10 +92,10 @@ endif
 endef
 
 define Download/atf-airoha
-  SOURCE_DATE:=2026-07-17
-  SOURCE_VERSION:=80519beaea5298bbc660cd8f345e08aba9bd9547
+  SOURCE_DATE:=2026-09-30
+  SOURCE_VERSION:=705478c3d84fb1cba4c2de1bb99c43098b785d61
   URL:=https://github.com/Ansuel/atf-airoha.git
-  MIRROR_HASH:=242d055db6d2af449ca084fb742cca6f546e40453d99b903068da7152db2f0af
+  MIRROR_HASH:=24d08b8d47b7c9fa83cda20bd80b38f5872dc48f8ec770cb82582e7fa0c5b75c
   PROTO:=git
   FILE:=atf-airoha-$$$$(subst -,.,$$$$(SOURCE_DATE))~$$$$(call version_abbrev,$$$$(SOURCE_VERSION)).tar.zst
   SUBDIR:=atf-airoha
